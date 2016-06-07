@@ -1,0 +1,21 @@
+<div ng-controller="loginCtrl">
+<form action="/" ng-app="mainApp" name="myForm" novalidate>
+   
+        <h1 class="page-title">{{ message }}</h1>
+        <p>Username :<br>
+            <input type="text" name="username" id="username" ng-model="username" class="input-text" required>
+            <span ng-show="myForm.username.$dirty && myForm.username.$invalid"></span>
+            <spa style="color:red;" ng-show="myForm.username.$error.required">Username is required.</span>
+        </p>
+        <p>Password : <br>
+            <input type="password" name="password" id="password" ng-model="password" class="input-text" required>
+            <span ng-show="myForm.password.$dirty && myForm.password.$invalid"></span>
+            <span style="color:red;" ng-show="myForm.password.$error.required">Password is required.</span>
+        </p>
+        <button type="button" id="submit" ng-click="submit()" ng-disabled="myForm.username.$dirty && myForm.username.$invalid || myForm.password.$dirty  && myForm.password.$invalid" class="button">Login</button>
+</form>
+</div>
+
+
+
+

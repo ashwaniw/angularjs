@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<script src="js/angular.min.js"></script>
+<body>
+    <form ng-app="myApp" name="myform" ng-controller="validator" novalidate>
+    	<p>
+    	Username: <input type="text" ng-model="username" name="username" required>
+        <span style="color:#F00" ng-show="myform.username.$dirty && myform.username.$invalid">
+            <span ng-show="myform.username.$error.required">Username is required.</span>
+            <span ng-show="myform.username.$error.invalid">Username is not valid</span>
+        </span>
+        </p>
+        <p>
+        Email: <input type="email" name="email" ng-model="email" required>
+        <span style="color:#F00" ng-show="myform.email.$dirty && myform.email.$invalid">
+            <span ng-show="myform.email.$error.required">Email is required</span>
+            <span ng-show="myform.email.$error.email">Invalid email address</span>
+        </span>
+        </p>
+        <input type="submit" ng-disabled="myform.username.$dirty && myform.username.$invalid && myform.username.$prestine || myform.email.$dirty && myform.email.$invalid && myform.email.$prestine">
+    </form>
+    <script>
+		var val =  angular.module('myApp',[]);
+		val.controller('validator', function($scope){
+			})
+	</script>
+</body>
+</html>
+
+

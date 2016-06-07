@@ -1,0 +1,73 @@
+<div ng-controller="aboutCtrl">
+    <h1 class="page-title">{{ message }}</h1>
+</div>
+<div class="customer-details-form clearfix" ng-controller="formController">
+    <form name="entryForm">
+        <div class="clearfix">
+            <div class="controls-group">
+                <span class="form-label"><label for="firstName">First Name:</label></span>
+                <span class="form-value">
+                    <input type="text" name="firstName" ng-model="userDetails.firstName" class="input-text" required>
+                </span>
+            </div>
+            <div class="controls-group">
+                <span class="form-label"><label for="lastName">Last Name:</label></span>
+                <span class="form-value">
+                    <input type="text" name="lastName" ng-model="userDetail.lastName" class="input-text" required>
+                </span>     
+            </div>
+        </div>
+        <div class="clearfix">
+            <div class="controls-group">
+                <span class="form-label"><label for="country">Country:</label></span>
+                <span class="form-value">
+                    <input type="text" name="country" ng-model="userDetail.country" class="input-text" required>
+                </span>
+            </div>
+            <div class="controls-group">
+                <span class="form-label"><label for="state">State:</label></span>
+                <span class="form-value">
+                    <input type="text" name="state" ng-model="userDetail.state" class="input-text" required>
+                </span>
+            </div>
+        </div>
+        <div class="clearfix">
+            <div class="controls-group">
+                <span class="form-label"><label for="phoneNo">Phone No.:</label></span>
+                <span class="form-value">
+                    <input type="number" name="phoneNo" ng-model="userDetail.phoneNo" ng-minlength="2" ng-maxlength="2" class="input-text" required>
+                </span>
+            </div>
+            <div class="controls-group">
+                <span class="form-label"><label for="email">Email:</label></span>
+                <span class="form-value">
+                    <input type="email" name="email" ng-model="userDetail.email" class="input-text" required>
+                </span>
+            </div>
+        </div>
+        <div class="form-button">
+            <input type="submit" value="Submit" class="button" ng-click="submitForm()">
+        </div>
+     </form>
+     <div class="customer-details-form clearfix">
+        <table width="100%" class="gridtable">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>Phone No.</th>
+                <th>Email</th>
+            </tr>
+            <tr ng-repeat="userDetail in userDetails">
+                <td>{{firstName}}</td>
+                <td>{{lastName}}</td>
+                <td>{{country}}</td>
+                <td>{{state}}</td>
+                <td>{{phoneNo}}</td>
+                <td>{{email}}</td>
+            </tr>
+        </table>
+     </div>
+</div>
+

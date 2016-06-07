@@ -1,0 +1,10 @@
+<div class="jumbotron text-center">
+        <h1>Home Page</h1>
+
+        <p>{{ message }}</p>
+		<p>EmpCode : {{ empCode }}</p>
+		<button ng-click = "temp = true;" class="btn btn-primary">List</button>
+    </div>
+		<div ng-show = "temp">
+			<div ng-include = "'templates/home-list.html'"></div>
+		</div>

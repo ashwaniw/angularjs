@@ -1,0 +1,139 @@
+html {
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+img {
+    width: 100%;
+    }
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+    }
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */    
+.text-center {
+    text-align: center;
+    }
+body {
+    background: #034ea2;
+    background-repeat:repeat-x;
+    background-position: center top;
+      margin: 0;    
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #3d3d3d;
+    }
+.container {
+    background: #fff;
+    max-width: 895px;
+    margin: 0 auto;
+    position: relative;
+    padding: 25px;
+    }
+.page-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #ff9933;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    border-bottom: #ccc 1px solid;
+    }    
+.main-menu {
+    margin: 0;
+    padding: 10px;
+    list-style-type: none;
+    text-align:center;
+    background: #f9f9f9;
+    }
+.main-menu li {
+    display: inline-block
+    }        
+.main-menu li a {
+    background: #0099cc;
+    padding: 5px 15px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    border-right: #ccc 1px solid;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    }
+.main-menu li a:hover {
+    background: #6a6a6a;
+    }        
+.main-menu li:last-child a {
+    border-right: 0;
+    }
+.button {
+    margin: 0;
+    border: 0;
+    padding: 5px 10px;
+    background: #FF9933;
+    text-align: center;
+    color: #fff;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    font-weight: bold
+    }
+.button:hover {
+    background: #eaeaea;
+    cursor: pointer;
+    color: #3d3d3d;
+    }
+.input-text {
+    margin: 0;
+    padding: 0;
+    border: #ccc 1px solid;
+    padding: 3px;
+    width: 170px;
+    }
+.customer-details-form {
+    width: 100%;
+    margin: 0 auto;
+    }
+.controls-group {
+    margin-bottom: 10px;
+    width: 50%;
+    float: left;
+    }    
+.form-label {
+    display: block;
+    padding-right: 25px;
+    font-size: 12px;
+    margin-bottom: 5px;
+    }
+.form-value{
+    display: block;
+    overflow: hidden;
+    }
+.form-button {
+    margin-top: 30px;
+    text-align: center
+    }
+.gridtable {
+    border: #ccc 1px solid;
+    border-collapse: collapse;
+    margin-top: 25px;
+    }        
+.gridtable th {
+    background: #058fd0;
+    padding: 5px;
+    color: #fff;
+    text-align: left;
+    font-weight: bold;
+    border-right: 1px solid #fff;
+    }
+.gridtable td {
+    border-right: #ccc 1px solid;
+    border-bottom: #ccc 1px solid;
+    padding: 5px;
+    }
+.gridtable th:last-child,
+.gridtable td:last-child {
+    border-right: 0;
+    }      

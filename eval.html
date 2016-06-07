@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <script type="text/javascript" src="js/angular.min.js" ></script>
+	<script type="text/javascript">		
+		var validationApp  = angular.module("validationApp", []);
+		validationApp.controller('MainController', function($scope)
+			{
+				$scope.exprs = [];				
+				$scope.addExp = function(expr){
+				$scope.exprs.push(expr)
+			}
+			$scope.remove = function(index)
+			{
+				$scope.exprs.splice(index, 1)
+			}
+		});		
+	</script>
+  </head>
+  <body  ng-app="validationApp">
+    <div ng-controller="MainController">
+    	Expression: <input type="text" ng-model="expr" size="50" />
+    	<button ng-click="addExp(expr)">Evaluate</button>
+		<ul>
+			<li ng-repeat="expr in exprs track by $index">
+				<a href="#" ng-click="remove($index)">X</a>
+				<span ng-bind="$parent.$eval(expr)"></span>
+			</li>
+		</ul>
+	</div>
+  </body>
+</html>
