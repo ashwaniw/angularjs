@@ -35,26 +35,57 @@ app.controller('aboutCtrl', function($scope){
     })    
 app.controller('contactCtrl', function($scope){
     $scope.message = 'Contact Us';
-    })    
-    
-app.controller("simpleController", function($scope){    
-    //$scope.collection = [{firstName: 'Ashwani', lastName: 'Sharma', country: 'India', state: 'UP', phoneNo: '9971452603', email: 'test@gmail.com'}];
-    $scope.addEntty = function(){
-        $scope.collection.push($scope.formData);        
-        $scope.formData = '';
-        }
-    }) 
-app.controller("formController", function($scope){  
-    //$scope.userData =[{}]; 
-    var userDetails = '';  
-    $scope.submitForm = function() { 
-    var userDetails = [
-            {firstName: "userDetail.firstName", lastName: "userDetail.lastName", country: "userDetail.country", state: "userDetail.state", phoneNo: "userDetail.phoneNo", email: "userDetail.email"}
-    ];
-    $scope.userDetails = userDetails;
+    })
 
-    };
-    
-
-   
-})
+app.controller("userData", function($scope){        
+    $scope.items = [{}];
+            $scope.editing = false;    
+                        
+            $scope.addItem = function(item) {
+                $scope.items.push(item);
+                $scope.item = {};
+             }
+            
+            $scope.removeItem = function(index){
+                $scope.items.splice(index,1);
+            }
+            
+            $scope.editItem = function(index){
+                 $scope.editing = $scope.items.indexOf(index);               
+            }
+            
+            $scope.saveField = function(index) {
+                if ($scope.editing !== false) {
+                    $scope.editing = false;
+                }       
+            };
+            
+             $scope.loadAddresses = function(){
+                if(localStorage.getItem('item') != 'undefined' && localStorage.getItem('item') != null)
+                    $scope.items = JSON.parse(localStorage.getItem('item'));
+                else
+                    $scope.items = [];
+                    console.log($scope.items);
+            }
+            
+            $scope.saveItems = function(){
+                localStorage.setItem('item', JSON.stringify($scope.items));
+            }
+            
+            $scope.setWatches = function(){
+                $scope.$watch('items', function(){
+                    $scope.saveItems();
+                }, true);
+            }
+            
+            $scope.init = function(){
+                $scope.loadAddresses();
+                $scope.setWatches();
+            }
+            
+            $scope.init();
+            
+            $scope.orderByMe = function(item){
+                $scope.myOrderBy = item;
+                }
+    })

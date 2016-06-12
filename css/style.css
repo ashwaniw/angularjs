@@ -23,7 +23,7 @@ body {
     background-repeat:repeat-x;
     background-position: center top;
       margin: 0;    
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-family: Arial;
     font-size: 14px;
     color: #3d3d3d;
     }
@@ -47,7 +47,6 @@ body {
     padding: 10px;
     list-style-type: none;
     text-align:center;
-    background: #f9f9f9;
     }
 .main-menu li {
     display: inline-block
@@ -70,7 +69,7 @@ body {
     border-right: 0;
     }
 .button {
-    margin: 0;
+    margin: 0 0 2px 0 ;
     border: 0;
     padding: 5px 10px;
     background: #FF9933;
@@ -91,10 +90,18 @@ body {
     border: #ccc 1px solid;
     padding: 3px;
     width: 170px;
+    color: #ccc;
     }
+.input-text-edit {
+    margin: 0;
+    padding: 0;
+    border: #ccc 1px solid;
+    padding: 3px;
+    width: auto;
+    }    
 .customer-details-form {
-    width: 100%;
     margin: 0 auto;
+    overflow: auto;
     }
 .controls-group {
     margin-bottom: 10px;
@@ -103,9 +110,11 @@ body {
     }    
 .form-label {
     display: block;
+    width: 125px;
+    float: left;
+    text-align: right;
     padding-right: 25px;
     font-size: 12px;
-    margin-bottom: 5px;
     }
 .form-value{
     display: block;
@@ -116,7 +125,6 @@ body {
     text-align: center
     }
 .gridtable {
-    border: #ccc 1px solid;
     border-collapse: collapse;
     margin-top: 25px;
     }        
@@ -128,12 +136,22 @@ body {
     font-weight: bold;
     border-right: 1px solid #fff;
     }
+.gridtable th:last-child {
+    border-right: 1px solid #058fd0;
+    }    
 .gridtable td {
     border-right: #ccc 1px solid;
     border-bottom: #ccc 1px solid;
-    padding: 5px;
+    padding: 2px 5px;
+    font-size: 12px;
     }
-.gridtable th:last-child,
-.gridtable td:last-child {
-    border-right: 0;
-    }      
+.gridtable td:first-child {
+    border-left: #ccc 2px solid;
+    }    
+.error {
+    color: #F00;
+    font-size: 12px;
+    }    
+.width140 {
+    width: 140px;
+}

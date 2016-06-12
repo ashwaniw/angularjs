@@ -1,73 +1,119 @@
 <div ng-controller="aboutCtrl">
     <h1 class="page-title">{{ message }}</h1>
 </div>
-<div class="customer-details-form clearfix" ng-controller="formController">
-    <form name="entryForm">
+<div class="customer-details-form clearfix" ng-controller="userData">  
+    <form name="userForm" novalidate>
         <div class="clearfix">
             <div class="controls-group">
-                <span class="form-label"><label for="firstName">First Name:</label></span>
+                <span class="form-label">First Name:</span>
                 <span class="form-value">
-                    <input type="text" name="firstName" ng-model="userDetails.firstName" class="input-text" required>
+                    <input type="text" name="firstName" ng-model="item.firstName" class="input-text" placeholder="First Name" ng-minlength="3" ng-maxlength="8"   required />
+                    <div class="error" ng-show="userForm.firstName.$error.minlength">Username is too short.</div>
+                    <div class="error" ng-show="userForm.firstName.$error.maxlength">Username is too long.</div>
+                    <div ng-show="userForm.firstName.$dirty && userForm.firstName.$invalid"></div>
+                    <div class="error" ng-show="userForm.firstName.$error.required">First name is mandatory</div>
                 </span>
             </div>
             <div class="controls-group">
-                <span class="form-label"><label for="lastName">Last Name:</label></span>
+                <span class="form-label">Last Name:</span>
                 <span class="form-value">
-                    <input type="text" name="lastName" ng-model="userDetail.lastName" class="input-text" required>
-                </span>     
+                    <input type="text" name="lastName" ng-model="item.lastName" class="input-text" placeholder="Last Name" required />
+                    <div ng-show="userForm.lastName.$dirty && userForm.lastName.$invalid"></div>
+                    <div class="error" ng-show="userForm.lastName.$error.required">Last name is mandatory</div>
+                </span>        
             </div>
         </div>
         <div class="clearfix">
             <div class="controls-group">
-                <span class="form-label"><label for="country">Country:</label></span>
+                <span class="form-label">Country:</span>
                 <span class="form-value">
-                    <input type="text" name="country" ng-model="userDetail.country" class="input-text" required>
+                    <input type="text" name="country" ng-model="item.country" class="input-text" placeholder="Country" required />
+                    <div ng-show="userForm.country.$dirty && userForm.country.$invalid"></div>
+                    <div class="error" ng-show="userForm.country.$error.required">Country is required</div>
                 </span>
             </div>
             <div class="controls-group">
-                <span class="form-label"><label for="state">State:</label></span>
+                <span class="form-label">State:</span>
                 <span class="form-value">
-                    <input type="text" name="state" ng-model="userDetail.state" class="input-text" required>
+                    <input type="text" name="state" ng-model="item.state" class="input-text" placeholder="State" required />
+                    <div ng-show="userForm.state.$dirty && userForm.state.$invalid"></div>
+                    <div class="error" ng-show="userForm.state.$error.required">State name is required</div>
                 </span>
             </div>
         </div>
         <div class="clearfix">
             <div class="controls-group">
-                <span class="form-label"><label for="phoneNo">Phone No.:</label></span>
+                <span class="form-label">Phone No.:</span>
                 <span class="form-value">
-                    <input type="number" name="phoneNo" ng-model="userDetail.phoneNo" ng-minlength="2" ng-maxlength="2" class="input-text" required>
+                    <input type="number" name="phoneNo" ng-model="item.phoneNo" class="input-text" placeholder="Phone No." required />
+                    <div ng-show="userForm.phoneNo.$dirty && userForm.phoneNo.$invalid"></div>
+                    <div class="error" ng-show="userForm.phoneNo.$error.required">Phone No.</div>
                 </span>
             </div>
             <div class="controls-group">
-                <span class="form-label"><label for="email">Email:</label></span>
+                <span class="form-label">Email:</span>
                 <span class="form-value">
-                    <input type="email" name="email" ng-model="userDetail.email" class="input-text" required>
+                    <input type="email" name="email" ng-model="item.email" class="input-text" placeholder="Email" required />
+                    <div ng-show="userForm.email.$dirty && userForm.email.$invalid"></div>
+                    <div class="error" ng-show="userForm.email.$error.required">Email is required</div>
+                    <div class="error" ng-show="userForm.email.$error.email">Invalid email address</div>
                 </span>
             </div>
         </div>
         <div class="form-button">
-            <input type="submit" value="Submit" class="button" ng-click="submitForm()">
+            <button type="submit" value="Add to list" class="button" ng-click="addItem(item)" ng-disabled="userForm.$invalid">Submit</button>
+            <!--<input type="submit" value="Submit" ng-click="addItem(item)" />-->
         </div>
-     </form>
-     <div class="customer-details-form clearfix">
-        <table width="100%" class="gridtable">
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Country</th>
-                <th>State</th>
-                <th>Phone No.</th>
-                <th>Email</th>
-            </tr>
-            <tr ng-repeat="userDetail in userDetails">
-                <td>{{firstName}}</td>
-                <td>{{lastName}}</td>
-                <td>{{country}}</td>
-                <td>{{state}}</td>
-                <td>{{phoneNo}}</td>
-                <td>{{email}}</td>
-            </tr>
-        </table>
-     </div>
+      </form>  
+     
+        
+      
+        <div class="customer-details-form clearfix">
+            
+            <input type="text" ng-model="testFilter" placeholder="Keyword..." class="input-text" />         
+            <table width="100%" class="gridtable">
+                <tr>
+                    <th ng-click="orderByMe('firstName')">First Name</th>
+                    <th ng-click="orderByMe('lastName')">Last Name</th>
+                    <th ng-click="orderByMe('country')">Country</th>
+                    <th ng-click="orderByMe('state')">State</th>
+                    <th ng-click="orderByMe('phoneNo')">Phone No.</th>
+                    <th ng-click="orderByMe('email')">Email</th>
+                    <th class="width140">Action</th>
+                </tr>
+                <tr ng-repeat="item in items | filter:testFilter | orderBy:myOrderBy">
+                    <td>
+                        <span ng-hide="editMode">{{item.firstName}}</span>
+                        <input type="text" ng-show="editMode" ng-model="item.firstName" class="input-text-edit" />
+                    </td>
+                    <td>
+                        <span ng-hide="editMode">{{item.lastName}}</span>
+                        <input type="text" ng-show="editMode" ng-model="item.lastName" class="input-text-edit" />
+                    </td>
+                    <td>
+                        <span ng-hide="editMode">{{item.country}}</span>
+                        <input type="text" ng-show="editMode" ng-model="item.country" class="input-text-edit" />
+                    </td>
+                    <td>
+                        <span ng-hide="editMode">{{item.state}}</span>
+                        <input type="text" ng-show="editMode" ng-model="item.state" class="input-text-edit" />
+                    </td>
+                    <td>
+                        <span ng-hide="editMode">{{item.phoneNo}}</span>
+                        <input type="text" ng-show="editMode" ng-model="item.phoneNo" class="input-text-edit" />
+                    </td>
+                    <td>
+                        <span ng-hide="editMode">{{item.email}}</span>
+                        <input type="text" ng-show="editMode" ng-model="item.email" class="input-text-edit" />
+                    </td>
+                    <td>
+                        <button type="submit" ng-hide="editMode" ng-click="editMode = true; editItem(item)" class="button">Edit</button>
+                        <button type="submit" ng-show="editMode" ng-click="editMode = false" class="button">Save</button>
+                        <button type="button" ng-click="removeItem($index)" class="button">Delete</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+          
 </div>
 
